@@ -12,7 +12,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColinM.Halcyon.Response.Http", "ColinM.Halcyon.Response.Http\ColinM.Halcyon.Response.Http.csproj", "{1935542D-5B39-4CDA-AEF8-88C27A16A128}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ColinM.Halcyon.Response.Http", "src\ColinM.Halcyon.Response.Http\ColinM.Halcyon.Response.Http.csproj", "{B15D96FA-B6C3-4AE0-BD56-FACED6F3121B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,10 +28,10 @@ Global
 		{93F410F7-E46C-4F53-B5CD-D799509AFB6C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93F410F7-E46C-4F53-B5CD-D799509AFB6C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93F410F7-E46C-4F53-B5CD-D799509AFB6C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1935542D-5B39-4CDA-AEF8-88C27A16A128}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1935542D-5B39-4CDA-AEF8-88C27A16A128}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1935542D-5B39-4CDA-AEF8-88C27A16A128}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1935542D-5B39-4CDA-AEF8-88C27A16A128}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B15D96FA-B6C3-4AE0-BD56-FACED6F3121B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B15D96FA-B6C3-4AE0-BD56-FACED6F3121B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B15D96FA-B6C3-4AE0-BD56-FACED6F3121B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B15D96FA-B6C3-4AE0-BD56-FACED6F3121B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
