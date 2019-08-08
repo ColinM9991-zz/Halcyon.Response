@@ -6,6 +6,10 @@ using ColinM.Halcyon.Response.JsonConverters;
 
 namespace ColinM.Halcyon.Response
 {
+    /// <summary>
+    /// Serves as a model class for a hal+json formatted HTTP response.
+    /// </summary>
+    /// <typeparam name="TModel">The type of model which the response will be deserialized to.</typeparam>
     public partial class HalcyonResponseModel<TModel>
     {
         /// <summary>
@@ -52,6 +56,14 @@ namespace ColinM.Halcyon.Response
                 .CreateLinkComparer(linkToken)
                 .CompareLink(hrefValue, linkToken);
         }
+
+        /// <summary>
+        /// Determines whether the embedded resources contains a a resource matching the specified resource key.
+        /// </summary>
+        /// <param name="resourceKey">The resource key to locate in the collection of embedded resources.</param>
+        /// <returns>True if the embedded resources contains a resource matching the specified resource key, otherwise false.</returns>
+        public bool ContainsEmbeddedResource(string resourceKey)
+            => Embedded.ContainsKey(resourceKey);
 
         /// <summary>
         /// Locates the embedded resource identified by the resource key and converts it to a <see cref="HalcyonResponseModel{TModel}"/>.

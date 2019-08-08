@@ -6,13 +6,12 @@ using Xunit;
 
 namespace ColinM.Halcyon.Response.UnitTests
 {
-    public class HalcyonResponseModelTests
+    public class HalcyonResponseModelTests : TestsBase
     {
         [Fact]
         public void UsingContainsKey_WithKeyId_ReturnsTrueWhenLinkExists()
         {
             // Arrange
-            var fixture = new Fixture();
             var linkKey = fixture.Create<string>();
             var linksValue = fixture.Create<string>();
             var links = new Dictionary<string, JToken> { [linkKey] = linksValue };
@@ -33,7 +32,6 @@ namespace ColinM.Halcyon.Response.UnitTests
         public void UsingContainsKey_WithKeyId_ReturnsFalseWhenLinkDoesntExist()
         {
             // Arrange
-            var fixture = new Fixture();
             var linkKey = fixture.Create<string>();
             var linksValue = fixture.Create<string>();
             var fakeLinkKey = fixture.Create<string>();

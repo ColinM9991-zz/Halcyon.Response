@@ -1,7 +1,7 @@
 ﻿namespace ColinM.Halcyon.Response.UnitTests
 {
-    internal class MockResponseModel
+    public class MockResponseModel
     {
-        internal string MockContent { get; set; }
+        public string MockContent { get; set; }
     }
 }
