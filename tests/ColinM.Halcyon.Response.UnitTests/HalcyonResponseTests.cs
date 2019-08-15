@@ -1,8 +1,10 @@
-﻿using AutoFixture;
-using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
+using Newtonsoft.Json.Linq;
+using AutoFixture;
 using Xunit;
+using ColinM.Halcyon.Response.UnitTests.Models;
+using ColinM.Halcyon.Response.UnitTests.Comparers;
 
 namespace ColinM.Halcyon.Response.UnitTests
 {
@@ -103,6 +105,97 @@ namespace ColinM.Halcyon.Response.UnitTests
 
             // Assert
             Assert.Equal(expectedAnswer, actualAnswer);
+        }
+
+        [Fact]
+        public void UsingContainsEmbeddedResource_WithModelContainingAnEmbeddedResources_ReturnsTrue()
+        {
+            // Arrange
+            const string embeddedResourceKey = "mock";
+            var halcyonResponseModel = new HalcyonResponseModel<MockResponseModel>
+            {
+                Embedded = new Dictionary<string, JToken> { [embeddedResourceKey] = JToken.FromObject(new { mockTitle = "mock value" }) }
+            };
+
+            // Act
+            var containsEmbeddedResource = halcyonResponseModel.ContainsEmbeddedResource(embeddedResourceKey);
+
+            // Assert
+            Assert.True(containsEmbeddedResource);
+        }
+
+        [Fact]
+        public void UsingContainsEmbeddedResource_WithModelContainingNoEmbeddedResources_ReturnsFalse()
+        {
+            // Arrange
+            const string embeddedResourceKey = "mock";
+            var halcyonResponseModel = new HalcyonResponseModel<MockResponseModel>();
+
+            // Act
+            var containsEmbeddedResource = halcyonResponseModel.ContainsEmbeddedResource(embeddedResourceKey);
+
+            // Assert
+            Assert.False(containsEmbeddedResource);
+        }
+
+        [Fact]
+        public void UsingGetEmbeddedResource_WithModelContainingEmbeddedResources_ReturnsCorrectlyMappedEmbeddedResource()
+        {
+            // Arrange
+            const string embeddedResourceKey = "mock";
+            var expectedHalcyonResponseModel = new HalcyonResponseModel<MockResponseModel>
+            {
+                Model = new MockResponseModel { MockContent = "mock value" }
+            };
+
+            var halcyonResponseModel = new HalcyonResponseModel<MockResponseModel>
+            {
+                Embedded = new Dictionary<string, JToken> { [embeddedResourceKey] = JToken.FromObject(new MockResponseModel  { MockContent = "mock value" }) }
+            };
+
+            // Act
+            var actualEmbeddedResource = halcyonResponseModel.GetEmbeddedResource<MockResponseModel>(embeddedResourceKey);
+
+            // Asert
+            Assert.Equal(expectedHalcyonResponseModel.Model, actualEmbeddedResource.Model, new MockResponseModelComparer());
+        }
+
+        [Fact]
+        public void UsingGetEmbeddedResources_WithModelContainingEmbeddedResources_ReturnsCorrectlyMappedEmbeddedResource()
+        {
+            // Arrange
+            const string embeddedResourceKey = "mock";
+            var expectedHalcyonResponseModels = new HalcyonResponseModel<MockResponseModel>[]
+            {
+                new HalcyonResponseModel<MockResponseModel> { Model = new MockResponseModel { MockContent = "mock value" } },
+                new HalcyonResponseModel<MockResponseModel> { Model = new MockResponseModel { MockContent = "mock value 2" } }
+            };
+
+            var halcyonResponseModel = new HalcyonResponseModel<MockResponseModel>
+            {
+                Embedded = new Dictionary<string, JToken>
+                {
+                    [embeddedResourceKey] = JToken.FromObject(
+                        new MockResponseModel[]
+                        {
+                            new MockResponseModel
+                            {
+                                MockContent = "mock value"
+                            },
+                            new MockResponseModel
+                            {
+                                MockContent = "mock value 2"
+                            }
+                        }
+                    )
+                }
+            };
+
+            // Act
+            var actualEmbeddedResource = halcyonResponseModel.GetEmbeddedResources<MockResponseModel>(embeddedResourceKey);
+
+            // Asert
+            Assert.Equal(expectedHalcyonResponseModels, actualEmbeddedResource, new MockResponseModelArrayComparer());
         }
     }
 }

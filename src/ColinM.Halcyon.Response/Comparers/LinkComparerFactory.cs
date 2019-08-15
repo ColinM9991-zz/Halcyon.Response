@@ -2,10 +2,10 @@
 
 namespace ColinM.Halcyon.Response.Comparers
 {
-    public class LinkComparerFactory
+    internal class LinkComparerFactory
     {
         private const string HrefKey = "href";
-        public LinkComparer CreateLinkComparer(JToken linkToken)
+        internal LinkComparer CreateLinkComparer(JToken linkToken)
         {
             if (linkToken is JArray)
             {

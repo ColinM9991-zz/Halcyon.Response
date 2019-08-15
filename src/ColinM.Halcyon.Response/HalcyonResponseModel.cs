@@ -15,6 +15,7 @@ namespace ColinM.Halcyon.Response
         /// <summary>
         /// Contains the resource model.
         /// </summary>
+        [JsonIgnore]
         public TModel Model { get; set; }
 
         /// <summary>

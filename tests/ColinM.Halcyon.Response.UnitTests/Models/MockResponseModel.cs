@@ -1,4 +1,4 @@
-﻿namespace ColinM.Halcyon.Response.UnitTests
+﻿namespace ColinM.Halcyon.Response.UnitTests.Models
 {
     public class MockResponseModel
     {
