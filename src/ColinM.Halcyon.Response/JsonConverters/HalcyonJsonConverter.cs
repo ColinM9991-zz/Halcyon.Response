@@ -9,7 +9,7 @@ namespace ColinM.Halcyon.Response.JsonConverters
     /// <summary>
     /// Provides a <see cref="JsonConverter{T}"/> which is to be used when deserializing a hal+json API response.
     /// </summary>
-    /// <typeparam name="TModel">The model type which represents the hal+json resource.</typeparam>
+    /// <typeparam name="TModel">Model type which represents the resource.</typeparam>
     public class HalcyonJsonConverter<TModel> : JsonConverter<HalcyonResponseModel<TModel>> where TModel : class, new()
     {
         /// <summary>
